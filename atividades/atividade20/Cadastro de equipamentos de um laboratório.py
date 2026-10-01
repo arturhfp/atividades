@@ -32,15 +32,16 @@ O código deverá funcionar como identificador do equipamento.'''
 print("===================================================")
 print("[ N.E.R.V. - GEOPRONT SECURITY TERMINAL ]         ")
 print("===================================================")
-print("||                                               ||")
-print("||                 G. E. H. I. R. A             ||")
-print("||             [ MAGI SYSTEM: MELCHIOR ]         ||")
-print("||                                               ||")
-print("||   GOD'S IN HIS HEAVEN. ALL'S RIGHT WITH THE WORLD.||")
+print("||                                                ||")
+print("||                 G. E. H. I. R. A               ||")
+print("||             [ MAGI SYSTEM: MELCHIOR ]          ||")
+print("||                                                ||")
+print("||GOD'S IN HIS HEAVEN. ALL'S RIGHT WITH THE WORLD.||")
 print("===================================================")
 
 
 equipamentos = []
+LIMITE_CADASTROS = 3
 
 if __name__ == "__main__":
     print("Bem-vindo ao sistema de cadastro de equipamentos do laboratório da NERV")
@@ -53,13 +54,18 @@ if __name__ == "__main__":
         opcao = input("Escolha uma opção: ")
 
         if opcao == "1":
+            codigos_cadastrados = {eq["codigo_base"] for eq in equipamentos}
+            if len(codigos_cadastrados) >= LIMITE_CADASTROS:
+                print("Limite máximo de 3 cadastros atingido.")
+                continue
+
             codigo_base = input("Digite o código do equipamento/lote: ").strip()
             if any(eq["codigo_base"] == codigo_base for eq in equipamentos):
                 print("Esse código já está cadastrado.")
                 continue
 
-            nome = input("Digite o nome do equipamento: ").strip()
             tipo = input("Digite o tipo do equipamento: ").strip()
+            nome = input("Digite o nome do equipamento: ").strip()
             try:
                 quantidade = int(input("Digite a quantidade: "))
                 if quantidade < 1:
