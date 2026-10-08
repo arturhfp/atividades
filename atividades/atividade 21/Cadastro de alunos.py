@@ -42,7 +42,7 @@ for aluno in alunos:
     print(aluno)
 
 print(f"\nPrimeiro aluno: {alunos[0]}")
-print(f"Último aluno: {alunos[-1]}")
+print(f"Último aluno: {alunos[4]}")
 
 alunos.append("Joao")
 
